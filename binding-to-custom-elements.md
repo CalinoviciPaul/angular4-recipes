@@ -116,3 +116,5 @@ export class CockpitComponent implements OnInit {
   ```
   
 ```
+also output bindings can have aliases. Another example is although irelevant
+

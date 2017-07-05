@@ -152,7 +152,7 @@ reference element can be used only in the component template, not in ts code
 onAddServer(nameInput: HTMLInputElement) {
     this.serverCreated.emit({
       serverName: nameInput.value,
-      serverContent: this.serverContentInput.nativeElement.value
+      **serverContent: this.serverContentInput.nativeElement.value**
     });
   }
 ```

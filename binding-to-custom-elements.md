@@ -156,4 +156,31 @@ onAddServer(nameInput: HTMLInputElement) {
     });
   }
 ```
+**ng-content is similar to ng-transclude from angularJs**
 
+```
+<div
+  class="panel panel-default">
+  <!--<div class="panel-heading">{{ element.name }}</div>-->
+  <div class="panel-heading" #heading>{{ name }}</div>
+  <div class="panel-body">
+    <ng-content></ng-content>
+  </div>
+</div>
+
+............................................................
+
+ <app-server-element
+        *ngFor="let serverElement of serverElements"
+        [srvElement]="serverElement"
+        [name]="serverElement.name">
+        
+        //transclusion
+        <p #contentParagraph>
+          <strong *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>
+          <em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>
+        </p>
+        //end transclusion
+      </app-server-element>
+      
+```

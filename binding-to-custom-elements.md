@@ -42,7 +42,7 @@ Aliases:
   <div class="col-xs-12">
     <app-recipe-item
       *ngFor="let recipeEl of recipes; let i = index"
-      [recipe]="recipeEl"
+      [foodRecipe]="recipeEl"
       [index]="i"></app-recipe-item>
   </div>
 </div>

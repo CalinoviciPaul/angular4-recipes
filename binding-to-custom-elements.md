@@ -118,3 +118,19 @@ export class CockpitComponent implements OnInit {
 ```
 also output bindings can have aliases. Another example is although irelevant
 
+**Reference binding**
+
+reference element can be used only in the component template, not in ts code
+
+```
+
+  <input
+      type="text"
+      class="form-control"
+      #serverNameInput>
+      
+    <button
+      class="btn btn-primary"
+      (click)="onAddServer(serverNameInput)">Add Server</button>
+      ```
+      

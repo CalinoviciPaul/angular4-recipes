@@ -33,3 +33,17 @@ export class RecipeItemComponent implements OnInit {
   }
 }
 ```
+Aliases:
+```
+ @Input("foodRecipe") recipe: Recipe;
+...........................................................
+
+ <div class="row">
+  <div class="col-xs-12">
+    <app-recipe-item
+      *ngFor="let recipeEl of recipes; let i = index"
+      [recipe]="recipeEl"
+      [index]="i"></app-recipe-item>
+  </div>
+</div>
+```

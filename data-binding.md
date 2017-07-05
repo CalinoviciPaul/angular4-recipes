@@ -1,2 +1,2 @@
 ## Data binding
-** String interpolation ** 
+**String interpolation** 

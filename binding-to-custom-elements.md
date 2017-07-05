@@ -184,3 +184,16 @@ onAddServer(nameInput: HTMLInputElement) {
       </app-server-element>
       
 ```
+the content from ng-content can be accessed with:
+
+```
+@ContentChild('contentParagraph') paragraph: ElementRef;
+
+............................................................
+
+ <p #contentParagraph>
+          <strong *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>
+          <em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>
+</p>
+        
+```

@@ -130,5 +130,30 @@ reference element can be used only in the component template, not in ts code
     <button
       class="btn btn-primary"
       (click)="onAddServer(serverNameInput)">Add Server</button>
-      ```
       
+ ...................................................................................................
+ 
+ onAddServer(nameInput: HTMLInputElement) {
+    this.serverCreated.emit({
+      serverName: nameInput.value,
+      serverContent: this.serverContentInput.nativeElement.value
+    });
+  }
+ 
+```
+
+**Inject view element into the controller**
+
+```
+@ViewChild('serverContentInput') serverContentInput: ElementRef;
+       
+...
+
+onAddServer(nameInput: HTMLInputElement) {
+    this.serverCreated.emit({
+      serverName: nameInput.value,
+      serverContent: this.serverContentInput.nativeElement.value
+    });
+  }
+```
+

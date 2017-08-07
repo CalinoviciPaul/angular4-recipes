@@ -197,3 +197,4 @@ the content from ng-content can be accessed with:
 </p>
         
 ```
+and it is available in ngAfterContentInit not in onInit

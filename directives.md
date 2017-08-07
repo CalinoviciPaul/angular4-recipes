@@ -81,3 +81,41 @@ It is a better approach to use renderer. There are env where you don't have acce
 
 
 ```
+
+**Building structural directive** 
+
+
+```javascript
+
+import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
+
+@Directive({
+  selector: '[appUnless]'
+})
+export class UnlessDirective {
+  @Input() set appUnless(condition: boolean) {
+    if (!condition) {
+      this.vcRef.createEmbeddedView(this.templateRef);
+    } else {
+      this.vcRef.clear();
+    }
+  }
+
+  constructor(private templateRef: TemplateRef<any>, private vcRef: ViewContainerRef) { }
+
+}
+
+```
+TemplateRef - marks what we want to display
+ViewContainerRef - marks where we want to display
+```HTML
+<div *appUnless="onlyOdd">
+          <li
+            class="list-group-item"
+            [ngClass]="{odd: even % 2 !== 0}"
+            [ngStyle]="{backgroundColor: even % 2 !== 0 ? 'yellow' : 'transparent'}"
+            *ngFor="let even of evenNumbers">
+            {{ even }}
+          </li>
+        </div>
+```

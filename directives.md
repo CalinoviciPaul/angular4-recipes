@@ -38,4 +38,4 @@ export class BasicHighlightDirective implements OnInit {
   providers: [],
   bootstrap: [AppComponent]
 })
-```typescript
+```

@@ -107,6 +107,7 @@ export class UnlessDirective {
 
 ```
 TemplateRef - marks what we want to display
+
 ViewContainerRef - marks where we want to display
 ```HTML
 <div *appUnless="onlyOdd">

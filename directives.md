@@ -22,7 +22,7 @@ export class BasicHighlightDirective implements OnInit {
 ```
 ...............................................................
 
-```typescript
+```javascript
 @NgModule({
   declarations: [
     AppComponent,

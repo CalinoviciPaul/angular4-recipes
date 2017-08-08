@@ -45,3 +45,21 @@ export class AccountsService {
 }
 
 ```
+
+**Cross components comunication with services **
+
+I create an event emitter in the service. In a component I emit the event and in another component I subscribe to the event
+
+```javascript
+    this.accountsService.statusUpdated.emit(status);
+........................................................................................................
+
+this.accountsService.statusUpdated.subscribe(
+      (status: string) => alert('New Status: ' + status)
+    );
+    
+```
+
+
+
+

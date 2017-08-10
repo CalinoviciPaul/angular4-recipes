@@ -95,4 +95,39 @@ constructor(private serversService: ServersService,
 this.router.navigate(['servers'], {relativeTo: this.route});
 ```
 
+** Passing parameters **
 
+Declaring routes with params:
+
+```javascript
+const appRoutes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'users/:id/:name', component: UsersComponent}
+];
+```
+
+Fetching params values from the url:
+
+```javascript
+
+ ngOnInit() {
+    this.user = {
+      id: this.route.snapshot.params['id'],
+      name: this.route.snapshot.params['name']
+    };
+    this.paramsSubscription = this.route.params
+      .subscribe(
+        (params: Params) => {
+          this.user.id = params['id'];
+          this.user.name = params['name'];
+        }
+      );
+  }
+  
+ ```
+ 
+ * If we use the snapshot method if we have a link to a url linked to the same controller the ngOnInit is not called anymore and therefore the page data won't be changed
+ * In order to avoid this unwanted behaviour we use the observables
+ 
+  
+ 

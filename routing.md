@@ -42,3 +42,57 @@ export class AppRoutingModule {
     </div>
   </div>
  ```
+**Directives for navigation**
+
+
+```HTML
+<li role="presentation"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}">
+          <a routerLink="/">Home</a>
+        </li>
+        <li role="presentation"
+            routerLinkActive="active">
+          <a routerLink="servers">Servers</a>
+        </li>
+        <li role="presentation"
+            routerLinkActive="active">
+          <a [routerLink]="['users']">Users</a>
+        </li>
+        
+```
+
+* routerLink='servers' navigates to relative path servers. If I am at ../servers link it will try to navigate to '.../servers/servers'
+* routerLink='/servers' means thhe global path
+* routerLink = '../servers' the same as in the folder structure
+
+
+** Styling active tabs **
+
+You can add routerLinkActive to the link or to the wrapping element
+For home link we add  [routerLinkActiveOptions]="{exact: true}". Otherwise the link matches for all the other paths and the 'home' item would be highlighted
+
+
+** Navigating programmatically **
+
+```javascript
+constructor(private router: Router) { }
+...
+
+    this.router.navigate(['/servers']);
+```
+
+Realatie routing:
+
+```javascript
+constructor(private serversService: ServersService,
+              private router: Router,
+              private route: ActivatedRoute) {
+  }
+  
+...
+
+this.router.navigate(['servers'], {relativeTo: this.route});
+```
+
+

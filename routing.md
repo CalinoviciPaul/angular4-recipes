@@ -127,7 +127,39 @@ Fetching params values from the url:
  ```
  
  * If we use the snapshot method if we have a link to a url linked to the same controller the ngOnInit is not called anymore and therefore the page data won't be changed
- * In order to avoid this unwanted behaviour we use the observables
+ * In order to avoid this unwanted behaviour we use the observables. To avoid problems it is bette to unsubscribe, even though the routes observers are unsubscribed by default  by angular
+ 
+ ```javascript
+   ngOnDestroy() {
+    this.paramsSubscription.unsubscribe();
+  }
+```
+
+Query params in the url:
+
+HTML:
+
+```HTML
+
+  <a
+        [routerLink]="['/servers', server.id]"
+        [queryParams]="{allowEdit: server.id === 3 ? '1' : '0'}"
+        fragment="loading"
+        href="#"
+        class="list-group-item"
+        *ngFor="let server of servers">
+        {{ server.name }}
+      </a>
+      
+```
+Programmatically:
+
+```javascript
+this.router.navigate(['/servers', id, 'edit'], {queryParams: {allowEdit: '1'}, fragment: 'loading'});
+```
+
+
+ 
  
   
  

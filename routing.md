@@ -135,7 +135,7 @@ Fetching params values from the url:
   }
 ```
 
-Query params in the url:
+**Query params**:
 
 HTML:
 
@@ -158,8 +158,56 @@ Programmatically:
 this.router.navigate(['/servers', id, 'edit'], {queryParams: {allowEdit: '1'}, fragment: 'loading'});
 ```
 
+Fetching query params:
 
- 
+```javascript
+
+ this.route.queryParams
+      .subscribe(
+        (queryParams: Params) => {
+          this.allowEdit = queryParams['allowEdit'] === '1' ? true : false;
+        }
+      );
+      
+ ```
+**Route Guards**
+
+Declaration:
+
+```javascript
+
+  // canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
+```
+AuthGuard:
+
+```javascript
+
+
+@Injectable()
+export class AuthGuard implements CanActivate, CanActivateChild {
+  constructor(private authService: AuthService, private router: Router) {}
+
+  canActivate(route: ActivatedRouteSnapshot,
+              state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    return this.authService.isAuthenticated()
+      .then(
+        (authenticated: boolean) => {
+          if (authenticated) {
+            return true;
+          } else {
+            this.router.navigate(['/']);
+          }
+        }
+      );
+  }
+
+  canActivateChild(route: ActivatedRouteSnapshot,
+                   state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    return this.canActivate(route, state);
+  }
+}
+```
  
   
  

@@ -209,5 +209,46 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 }
 ```
  
+ **Passing static data to a route**
+ 
+ { path: 'not-found', component: ErrorPageComponent, data: {message: 'Page not found!'} },
+ 
+ ```javascript
+ ngOnInit() {
+    // this.errorMessage = this.route.snapshot.data['message'];
+    this.route.data.subscribe(
+      (data: Data) => {
+        this.errorMessage = data['message'];
+      }
+    );
+  }
+  ```
+  **Resolving dynamic data with the resolve guard**
+  We can fetch some dynamic data before the routing actually occurs
+  
+  ```javascript
+  @Injectable()
+export class ServerResolver implements Resolve<Server> {
+  constructor(private serversService: ServersService) {}
+
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Server> | Promise<Server> | Server {
+    return this.serversService.getServer(+route.params['id']);
+  }
+}
+..............................................................................
+
+{ path: ':id', component: ServerComponent, resolve: {server: ServerResolver} }
+
+Fetching resolved data:
+
+ this.route.data
+      .subscribe(
+        (data: Data) => {
+          this.server = data['server'];
+        }
+      );
+```
+  
+  
   
  

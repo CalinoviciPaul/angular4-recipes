@@ -249,6 +249,7 @@ Fetching resolved data:
       );
 ```
   
-  
+If we use the hash, the server takes into consideration only what is before the hash #
+Angular parse the url after the hash
   
  

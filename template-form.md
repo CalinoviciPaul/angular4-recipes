@@ -86,3 +86,51 @@ disable submit button if form is not valid [disabled]="!f.valid"
  #email="ngModel">
 <span class="help-block" *ngIf="!email.valid && email.touched">Please enter a valid email!</span>
 ```
+
+**Grouping Form controls**
+
+ ngModelGroup="userData"
+ #userData="ngModelGroup"
+ the same as for the email
+ 
+ 
+ **Handling radio buttons**
+ 
+ ```javascript
+ 
+  <div class="radio" *ngFor="let gender of genders">
+          <label>
+            <input
+              type="radio"
+              name="gender"
+              ngModel
+              [value]="gender"
+              required>
+            {{ gender }}
+          </label>
+        </div>
+        
+        ```
+ **Overriding and patching values in the form**
+ 
+ ```javscript
+ suggestUserName() {
+    const suggestedName = 'Superuser';
+    // this.signupForm.setValue({
+    //   userData: {
+    //     username: suggestedName,
+    //     email: ''
+    //   },
+    //   secret: 'pet',
+    //   questionAnswer: '',
+    //   gender: 'male'
+    // });
+    this.signupForm.form.patchValue({
+      userData: {
+        username: suggestedName
+      }
+    });
+  }
+ ```
+ 
+

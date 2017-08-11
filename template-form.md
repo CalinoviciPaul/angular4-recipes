@@ -27,8 +27,8 @@ HTML:
               class="form-control"
               ngModel
               name="email"
-              required
-              email
+              required -->
+              email --> checks if it is a valid mail
               #email="ngModel">
             <span class="help-block" *ngIf="!email.valid && email.touched">Please enter a valid email!</span>
           </div>
@@ -79,3 +79,10 @@ HTML:
 ```
 We can access the form with @ViewChild('f') signupForm: NgForm;
 
+disable submit button if form is not valid [disabled]="!f.valid"
+
+```HTML
+...
+ #email="ngModel">
+<span class="help-block" *ngIf="!email.valid && email.touched">Please enter a valid email!</span>
+```

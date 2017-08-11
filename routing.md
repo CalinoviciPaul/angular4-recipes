@@ -67,13 +67,13 @@ export class AppRoutingModule {
 * routerLink = '../servers' the same as in the folder structure
 
 
-** Styling active tabs **
+**Styling active tabs**
 
 You can add routerLinkActive to the link or to the wrapping element
 For home link we add  [routerLinkActiveOptions]="{exact: true}". Otherwise the link matches for all the other paths and the 'home' item would be highlighted
 
 
-** Navigating programmatically **
+**Navigating programmatically**
 
 ```javascript
 constructor(private router: Router) { }
@@ -95,7 +95,7 @@ constructor(private serversService: ServersService,
 this.router.navigate(['servers'], {relativeTo: this.route});
 ```
 
-** Passing parameters **
+**Passing parameters**
 
 Declaring routes with params:
 

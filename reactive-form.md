@@ -156,4 +156,31 @@ Declare custom validator:
 ```
 Durign the validation process the css class of the component will be `ng-pending`
  
+**Status and value listener**
 
+```javascript
+ // this.signupForm.valueChanges.subscribe(
+    //   (value) => console.log(value)
+    // );
+    this.signupForm.statusChanges.subscribe(
+      (status) => console.log(status)
+    );
+```
+
+**Set and patch values**
+
+```javascript
+this.signupForm.setValue({
+      'userData': {
+        'username': 'Max',
+        'email': 'max@test.com'
+      },
+      'gender': 'male',
+      'hobbies': []
+    });
+    this.signupForm.patchValue({
+      'userData': {
+        'username': 'Anna',
+      }
+    });
+ ```

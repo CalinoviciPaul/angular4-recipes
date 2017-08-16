@@ -154,6 +154,6 @@ Declare custom validator:
 }
 
 ```
-
+Durign the validation process the css class of the component will be `ng-pending`
  
 

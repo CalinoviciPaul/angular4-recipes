@@ -104,3 +104,56 @@ Link the form defined in javascript with the html form:
     (<FormArray>this.signupForm.get('hobbies')).push(control);
   }
 ```
+
+**Custom validators**
+
+Declare custom validator:
+
+```javascript
+ 'username': new FormControl(null, [Validators.required, this.forbiddenNames.bind(this)]),
+ ```
+ The validator is called by Angular so we have to bind the method to the current class
+ 
+ Implementation
+ ```javascript
+  forbiddenNames(control: FormControl): {[s: string]: boolean} {
+    if (this.forbiddenUsernames.indexOf(control.value) !== -1) {
+      return {'nameIsForbidden': true};
+    }
+    return null;
+  }
+ ```
+ 
+ **Error codes**
+ 
+ ```javascript
+  <span  *ngIf="!signupForm.get('userData.username').valid && signupForm.get('userData.username').touched"
+              class="help-block">
+              <span *ngIf="signupForm.get('userData.username').errors['nameIsForbidden']">This name is invalid!</span>
+              <span *ngIf="signupForm.get('userData.username').errors['required']">This field is required!</span>
+
+            </span>
+ ```
+ 
+ **Async validator**
+ 
+ ```javascript
+ 
+  forbiddenEmails(control: FormControl): Promise<any> | Observable<any> {
+    const promise = new Promise<any>((resolve, reject) => {
+      setTimeout(() => {
+        if (control.value === 'test@test.com') {
+          resolve({'emailIsForbidden': true});
+        } else {
+          resolve(null);
+        }
+      }, 1500);
+    });
+    return promise;
+  }
+}
+
+```
+
+ 
+
